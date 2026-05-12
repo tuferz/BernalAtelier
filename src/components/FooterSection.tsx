@@ -12,7 +12,7 @@ export default function FooterSection() {
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-20px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-6xl md:text-8xl lg:text-[10vw] font-serif leading-none tracking-tighter text-stone-200"
           >

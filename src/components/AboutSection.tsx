@@ -20,7 +20,7 @@ export default function AboutSection() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               Bernal Atelier nace de una búsqueda personal por la perfección tangible. Su creador divide su vida entre el rigor técnico de la industria y la libertad creativa del taller de cuero.
@@ -28,7 +28,7 @@ export default function AboutSection() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               Esta dualidad imprime en cada pieza una atención al detalle obsesiva y una durabilidad pensada para resistir las condiciones más exigentes, sin perder nunca la elegancia rústica.
@@ -51,7 +51,7 @@ export default function AboutSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-20px" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative aspect-4/5 w-full bg-stone-900"
           >

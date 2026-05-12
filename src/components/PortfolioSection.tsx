@@ -22,8 +22,22 @@ export default function PortfolioSection() {
   const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   return (
-    <section id="gallery" ref={containerRef} className="py-32 md:py-48 px-6 bg-stone-900/10">
-      <div className="max-w-7xl mx-auto space-y-32">
+    <section id="gallery" ref={containerRef} className="relative py-32 md:py-48 px-6 bg-stone-950 overflow-hidden">
+      {/* Textura de Granito de Fondo */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src="/images/granite.jpg" 
+          alt="Textura de Granito" 
+          fill 
+          sizes="100vw"
+          className="object-cover opacity-25 grayscale" 
+        />
+        {/* Difuminado suave arriba y abajo */}
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-950 via-stone-950/40 to-transparent h-48" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent" />
+      </div>
+
+      <div className="max-w-7xl mx-auto space-y-32 relative z-10">
         
         <div className="flex flex-col items-center text-center space-y-8">
           <span className="text-leather-light text-[10px] uppercase tracking-[0.4em]">La Colección</span>
