@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-stone-950: #130a06; /* Deep mahogany / cordovan */
+  --color-stone-900: #1c100a;
+  --color-stone-800: #2c1a12;
+  --color-stone-200: #e3dcd8;
+  --color-stone-400: #a3958c;
+  --color-leather: #8c4a23;
+  --color-leather-light: #b35f2d;
+  --color-leather-accent: #d97838;
+  
+  --font-serif: var(--font-playfair), serif;
+  --font-sans: var(--font-inter), sans-serif;
+
+  --animate-spin-slow: spin 20s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@layer base {
+  body {
+    @apply bg-stone-950 text-stone-200 font-sans antialiased selection:bg-leather selection:text-white;
+    cursor: default;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif leading-none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .tracking-boutique {
+    letter-spacing: 0.25em;
+  }
+
+  .border-stitching {
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+
+  .border-stitching-solid {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .deboss {
+    box-shadow: inset 0px 4px 10px rgba(0,0,0,0.8), 0px 1px 0px rgba(255,255,255,0.05);
+  }
+}
+
+.transition-premium {
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
