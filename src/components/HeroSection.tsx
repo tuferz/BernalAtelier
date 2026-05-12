@@ -5,59 +5,18 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import MagneticButton from "./MagneticButton";
 
-// Efecto sutil de partículas de polvo de oro animadas
-const GoldDust = () => {
-  const [mounted, setMounted] = useState(false);
-  const [particles, setParticles] = useState<{size: number, left: number, top: number, duration: number, delay: number, x: number}[]>([]);
 
-  useEffect(() => {
-    setMounted(true);
-    setParticles([...Array(25)].map(() => ({
-      size: Math.random() * 3 + 1,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      duration: Math.random() * 15 + 10,
-      delay: Math.random() * 5,
-      x: Math.random() * 40 - 20
-    })));
-  }, []);
-
-  if (!mounted) return null;
-
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-50">
-      {particles.map((p, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 0, x: 0 }}
-          animate={{ 
-            opacity: [0, 0.8, 0],
-            y: -100,
-            x: p.x
-          }}
-          transition={{ 
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "linear"
-          }}
-          style={{
-            position: "absolute",
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-            width: p.size,
-            height: p.size,
-            backgroundColor: "#d97706", // amber-600
-            borderRadius: "50%",
-            boxShadow: "0 0 6px #d97706",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
 
 export default function HeroSection() {
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // Check on mount
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -74,11 +33,11 @@ export default function HeroSection() {
       {/* Background Image full bleed, moody, immersive */}
       <div className="absolute inset-0 w-full h-full z-0 bg-stone-950">
         <motion.div 
-          style={{ y: yImage }} 
+          style={{ y: isMobile ? "0%" : yImage }} 
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full h-[120%] top-[-10%]"
+          className="relative w-full h-[120%] top-[-10%] will-change-transform"
         >
           {/* Main Leather/Fabric Texture Blend */}
           <Image 
@@ -90,17 +49,17 @@ export default function HeroSection() {
             priority
           />
           {/* Amber overlay for intense warmth */}
-          <div className="absolute inset-0 bg-amber-900/10 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-amber-900/20 md:bg-amber-900/10 md:mix-blend-overlay" />
           <div className="absolute inset-0 bg-gradient-to-tr from-stone-950/80 via-transparent to-stone-950/20" />
           
-          {/* Backlight (candle/lamp effect) - warm emanation */}
-          <div className="absolute top-[30%] right-[20%] w-[60vw] h-[60vw] bg-amber-500/20 rounded-full blur-[140px] mix-blend-screen pointer-events-none" />
+          {/* Backlight (candle/lamp effect) - warm emanation (Heavy on GPU, disabled on mobile) */}
+          <div className="hidden md:block absolute top-[30%] right-[20%] w-[60vw] h-[60vw] bg-amber-500/20 rounded-full blur-[140px] mix-blend-screen pointer-events-none" />
           
           {/* Gradient shadow to ground the bottom section naturally */}
           <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent pointer-events-none" />
           
-          {/* Bokeh Tool Detail (Out of focus real leather tool) */}
-          <div className="absolute -bottom-8 right-12 w-[30vw] h-[30vw] max-w-[400px] opacity-30 blur-xl pointer-events-none transform rotate-12">
+          {/* Bokeh Tool Detail (Heavy on GPU, disabled on mobile) */}
+          <div className="hidden md:block absolute -bottom-8 right-12 w-[30vw] h-[30vw] max-w-[400px] opacity-30 blur-xl pointer-events-none transform rotate-12">
             <Image 
               src="/images/product4.jpg" 
               alt="Detalle desenfocado"
@@ -117,10 +76,8 @@ export default function HeroSection() {
       {/* Right Side Gradient for CTA Legibility */}
       <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-gradient-to-l from-black/80 via-black/40 to-transparent pointer-events-none z-0" />
 
-      <GoldDust />
-
       <motion.div 
-        style={{ y: yText, opacity: opacityText }}
+        style={{ y: isMobile ? "0%" : yText, opacity: opacityText }}
         className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 pt-20"
       >
         {/* Left Side: Typography (Bone/Cream warm color) */}
