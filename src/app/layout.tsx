@@ -35,7 +35,7 @@ export default function RootLayout({
           {children}
         </SmoothScroll>
         {/* Sello Global Fijo */}
-        <div className="fixed bottom-8 right-8 z-[100] hidden md:flex pointer-events-none drop-shadow-2xl scale-75 lg:scale-100 origin-bottom-right">
+        <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[100] flex pointer-events-none drop-shadow-2xl scale-[0.6] md:scale-75 lg:scale-100 origin-bottom-right">
           <ArtisanStamp />
         </div>
       </body>

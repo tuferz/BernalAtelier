@@ -45,9 +45,9 @@ export default function PortfolioSection() {
                   alt={p.title} 
                   fill 
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover scale-110 group-hover:scale-100 transition-all duration-[1.5s] ease-[0.16,1,0.3,1] grayscale-40 group-hover:grayscale-10 mix-blend-luminosity group-hover:mix-blend-normal opacity-80 group-hover:opacity-100" 
+                  className="object-cover scale-100 group-hover:scale-105 transition-all duration-[1.5s] ease-[0.16,1,0.3,1] grayscale-[0.4] group-hover:grayscale-0 brightness-75 group-hover:brightness-100" 
                 />
-                <div className="absolute inset-0 border-stitching-solid border-transparent group-hover:border-leather-accent/40 m-4 transition-colors duration-700 pointer-events-none" />
+                <div className="absolute inset-0 border border-transparent group-hover:border-stone-500/20 m-6 transition-colors duration-700 pointer-events-none" />
               </div>
               <div className="flex justify-between items-start px-2">
                 <div>

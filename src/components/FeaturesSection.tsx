@@ -29,13 +29,13 @@ export default function FeaturesSection() {
               <span className="italic font-normal text-stone-400">Trasciende.</span>
             </h2>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="mt-16 relative w-full aspect-[4/5] max-w-sm hidden md:block"
-            >
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 1 }}
+                className="mt-12 md:mt-16 relative w-full aspect-[4/5] max-w-sm"
+              >
               <Image
                 src="/images/about.jpg"
                 alt="Detalle de Cuero Artesanal"
