@@ -14,9 +14,9 @@ export default function FeaturesSection() {
     <section className="py-32 md:py-48 px-6 bg-stone-950 text-stone-200 relative">
       <div className="absolute inset-0 bg-stone-950/50 deboss mix-blend-multiply pointer-events-none" />
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 relative z-10">
-        
+
         <div className="md:col-span-5">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -25,19 +25,19 @@ export default function FeaturesSection() {
           >
             <span className="text-leather-light text-[10px] uppercase tracking-[0.4em] mb-6 block">El Compromiso</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-[1.1] tracking-tight">
-              Calidad que <br/>
+              Calidad que <br />
               <span className="italic font-normal text-stone-400">Trasciende.</span>
             </h2>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 1 }}
               className="mt-16 relative w-full aspect-[4/5] max-w-sm hidden md:block"
             >
-              <Image 
-                src="/images/hero.jpg" 
+              <Image
+                src="/images/about.jpg"
                 alt="Detalle de Cuero Artesanal"
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -49,7 +49,7 @@ export default function FeaturesSection() {
 
         <div className="md:col-span-6 md:col-start-7 flex flex-col gap-16 md:gap-24 pt-12 md:pt-32">
           {features.map((f, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -58,9 +58,9 @@ export default function FeaturesSection() {
               className="flex flex-col gap-6"
             >
               <div className="w-full border-t border-stitching opacity-50" />
-              <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-12">
-                <h3 className="text-xl md:text-2xl font-serif whitespace-nowrap">{f.title}</h3>
-                <p className="text-stone-400 text-sm leading-relaxed max-w-sm">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-8 items-start">
+                <h3 className="text-xl md:text-2xl font-serif md:col-span-2">{f.title}</h3>
+                <p className="text-stone-400 text-sm leading-relaxed md:col-span-3">
                   {f.desc}
                 </p>
               </div>
