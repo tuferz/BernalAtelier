@@ -72,8 +72,14 @@ export default function HeroSection() {
     <section ref={containerRef} className="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 overflow-hidden border-b border-stitching">
       
       {/* Background Image full bleed, moody, immersive */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <motion.div style={{ y: yImage }} className="relative w-full h-[120%] top-[-10%] bg-stone-900">
+      <div className="absolute inset-0 w-full h-full z-0 bg-stone-950">
+        <motion.div 
+          style={{ y: yImage }} 
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full h-[120%] top-[-10%]"
+        >
           {/* Main Leather/Fabric Texture Blend */}
           <Image 
             src="/images/product6.jpg" 
