@@ -83,4 +83,4 @@ Asegúrate de tener instalado [Node.js](https://nodejs.org/) (se recomienda vers
 
 ---
 
-*Diseñado y desarrollado con el máximo respeto por el oficio de la marroquinería.* 🧵🪡
+*Diseñado y desarrollado con el máximo respeto por el oficio de la marroquinería.*
