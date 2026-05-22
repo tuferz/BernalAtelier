@@ -1,10 +1,10 @@
-# 🪵 Bernal Atelier — Lujo Rústico & Artesanía en Cuero
+# Bernal Atelier — Lujo Rústico & Artesanía en Cuero
 
 Un portafolio y catálogo digital boutique diseñado para un taller de marroquinería y artesanía en cuero premium. Este sitio web fusiona el rigor industrial con la calidez del trabajo hecho a mano.
 
 ---
 
-## 🎨 Filosofía & Concepto
+## Filosofía & Concepto
 
 **Bernal Atelier** nace de una búsqueda personal por la perfección tangible. Su creador, **Eben**, divide su vida entre el rigor técnico de la industria y la libertad creativa del taller de cuero. 
 
@@ -12,7 +12,7 @@ Esta dualidad imprime en cada pieza una atención al detalle obsesiva y una dura
 
 ---
 
-## ✨ Características de la Experiencia (Premium UI/UX)
+## Características de la Experiencia (Premium UI/UX)
 
 *   **Desplazamiento Ultra-Suave:** Integración de `Lenis Scroll` para una sensación de navegación fluida y premium.
 *   **Micro-animaciones Orgánicas:** Transiciones asimétricas, efectos parallax y entradas dinámicas potenciadas con `Framer Motion`.
@@ -34,7 +34,7 @@ Esta dualidad imprime en cada pieza una atención al detalle obsesiva y una dura
 
 ---
 
-## 📁 Estructura del Código
+## Estructura del Código
 
 ```bash
 src/
@@ -58,7 +58,7 @@ src/
 
 ---
 
-## 🚀 Inicio Rápido (Desarrollo Local)
+## Inicio Rápido (Desarrollo Local)
 
 ### Requisitos Previos
 
