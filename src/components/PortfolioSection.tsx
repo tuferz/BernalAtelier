@@ -110,13 +110,13 @@ export default function PortfolioSection() {
         </div>
 
         {/* Contenedor que será animado horizontalmente */}
-        <div className="flex-1 flex items-center min-h-0">
-          <div ref={scrollContainerRef} className="flex md:flex-row flex-col gap-12 md:gap-0 px-6 md:px-0 md:pl-[10vw]">
+        <div className="flex-1 flex items-center min-h-0 w-full">
+          <div ref={scrollContainerRef} className="flex flex-row gap-6 md:gap-0 px-6 md:px-0 md:pl-[10vw] w-full overflow-x-auto md:overflow-visible snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {PRODUCTS.map((p, i) => (
             <div
               key={i}
               ref={(el) => { cardsRef.current[i] = el; }}
-              className="flex-shrink-0 flex flex-col gap-4 md:gap-6 md:mr-16 lg:mr-24"
+              className="flex-shrink-0 flex flex-col gap-4 md:gap-6 md:mr-16 lg:mr-24 w-[85vw] md:w-auto snap-center"
             >
               {/* Image Container strictly bound by height to prevent text push-down */}
               <div className="relative overflow-hidden aspect-[4/3] md:aspect-[3/4] h-[35vh] md:h-[45vh] lg:h-[50vh] bg-stone-900 group cursor-pointer border border-white/[0.04]">

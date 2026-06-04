@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="min-h-screen flex flex-col font-sans bg-stone-950 text-stone-200">
+      <body className="min-h-screen flex flex-col font-sans bg-stone-950 text-stone-200 overflow-x-hidden">
         <NoiseOverlay />
         <SmoothScroll>
           {children}

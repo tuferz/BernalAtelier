@@ -187,7 +187,7 @@ export default function AboutSection() {
             </div>
 
             {/* Stats inline below image */}
-            <div className="mt-6 pt-4 border-t border-stitching grid grid-cols-3 gap-2 stats-grid">
+            <div className="mt-6 pt-4 border-t border-stitching grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-2 stats-grid">
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col gap-0.5 about-text-reveal">
                   <span className="text-xl md:text-2xl font-serif text-orange-50/90 tabular-nums block">
