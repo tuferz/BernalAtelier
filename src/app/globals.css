@@ -58,3 +58,10 @@
 .transition-premium {
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Hardware acceleration for GSAP SplitType elements */
+.char, .word, .line {
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}

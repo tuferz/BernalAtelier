@@ -37,7 +37,8 @@ export default function HeroSection() {
     const chars2 = splitTitle2.chars || [];
     
     // Hide initially to prevent flash
-    gsap.set([...chars1, ...chars2, descRef.current, ctaRef.current], { opacity: 0 });
+    gsap.set([...chars1, ...chars2], { opacity: 0 });
+    gsap.set([title1Ref.current, title2Ref.current], { opacity: 1 }); // Reveal parent after chars are hidden
     gsap.set(chars1, { y: 100 });
     gsap.set(chars2, { y: 100 });
     gsap.set(bgRef.current, { scale: 1.1, opacity: 0 });
@@ -123,7 +124,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 w-full h-full z-0 bg-stone-950">
         <div 
           ref={bgRef}
-          className="relative w-full h-[120%] top-[-10%] will-change-transform"
+          className="relative w-full h-[120%] top-[-10%] will-change-transform opacity-0"
         >
           {/* Main Leather/Fabric Texture Blend */}
           <Image 
@@ -167,7 +168,7 @@ export default function HeroSection() {
         <div className="pb-4" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
           <h1 
             ref={title1Ref}
-            className="text-[17vw] lg:text-[12vw] leading-[0.9] font-serif uppercase tracking-tighter text-orange-50 drop-shadow-md"
+            className="text-[17vw] lg:text-[12vw] leading-[0.9] font-serif uppercase tracking-tighter text-orange-50 drop-shadow-md opacity-0"
           >
             BERNAL
           </h1>
@@ -175,7 +176,7 @@ export default function HeroSection() {
         <div className="pb-4 ml-6 md:ml-20" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
           <h2 
             ref={title2Ref}
-            className="text-[12vw] lg:text-[8vw] leading-[0.9] font-serif italic font-light lowercase text-orange-100/90 drop-shadow-sm"
+            className="text-[12vw] lg:text-[8vw] leading-[0.9] font-serif italic font-light lowercase text-orange-100/90 drop-shadow-sm opacity-0"
           >
             atelier.
           </h2>
@@ -186,14 +187,15 @@ export default function HeroSection() {
       <div className="absolute bottom-[56px] md:bottom-[64px] right-[24px] md:right-[180px] lg:right-[240px] z-10 flex flex-col gap-8 max-w-sm">
         <p 
           ref={descRef}
-          className="text-orange-50/90 text-base md:text-lg font-light leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+          className="text-orange-50/90 text-base md:text-lg font-light leading-relaxed will-change-transform opacity-0"
+          style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
         >
           Piezas de cuero genuino que envejecen con carácter. Diseñadas bajo un rigor industrial, creadas con pasión artesanal.
         </p>
         
-        <div ref={ctaRef}>
+        <div ref={ctaRef} className="opacity-0">
           <MagneticButton>
-            <a href="#gallery" className="group flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-orange-50/90 hover:text-amber-500 transition-colors duration-500 drop-shadow-md">
+            <a href="#gallery" className="group flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-orange-50/90 hover:text-amber-500 transition-colors duration-500 will-change-opacity" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>
               <span className="w-12 h-px bg-stone-400 group-hover:w-20 group-hover:bg-amber-500 transition-all duration-500 ease-out"></span>
               Explorar Colección
             </a>
