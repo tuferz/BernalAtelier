@@ -1,14 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import MagneticButton from "./MagneticButton";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import SplitType from "split-type";
 
-
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 export default function HeroSection() {
   const [isMobile, setIsMobile] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const title1Ref = useRef<HTMLHeadingElement>(null);
+  const title2Ref = useRef<HTMLHeadingElement>(null);
+  const descRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -17,26 +28,101 @@ export default function HeroSection() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const yImage = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  useGSAP(() => {
+    // 1. Split Text Setup
+    const splitTitle1 = new SplitType(title1Ref.current!, { types: 'chars' });
+    const splitTitle2 = new SplitType(title2Ref.current!, { types: 'chars' });
+    
+    const chars1 = splitTitle1.chars || [];
+    const chars2 = splitTitle2.chars || [];
+    
+    // Hide initially to prevent flash
+    gsap.set([...chars1, ...chars2, descRef.current, ctaRef.current], { opacity: 0 });
+    gsap.set(chars1, { y: 100 });
+    gsap.set(chars2, { y: 100 });
+    gsap.set(bgRef.current, { scale: 1.1, opacity: 0 });
+
+    // 2. Initial Load Timeline
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    // Background fade + scale down
+    tl.to(bgRef.current, {
+      scale: 1,
+      opacity: 1,
+      duration: 2.5,
+      ease: "power2.out"
+    }, 0);
+
+    // BERNAL (Char by char)
+    tl.to(chars1, {
+      y: 0,
+      opacity: 1,
+      duration: 1.5,
+      stagger: 0.04,
+      ease: "expo.out"
+    }, 0.2);
+
+    // atelier (Char by char)
+    tl.to(chars2, {
+      y: 0,
+      opacity: 1,
+      duration: 1.5,
+      stagger: 0.03,
+      ease: "expo.out"
+    }, 0.5);
+
+    // Description & CTA fade up
+    tl.fromTo(descRef.current, 
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" },
+      1.2
+    );
+    tl.fromTo(ctaRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 1.5, ease: "power2.out" },
+      1.5
+    );
+
+    // 3. Scroll Parallax Effects
+    if (!isMobile) {
+      gsap.to(bgRef.current, {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      gsap.to([title1Ref.current, title2Ref.current], {
+        yPercent: 50,
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    }
+
+    // Cleanup split text on unmount
+    return () => {
+      splitTitle1.revert();
+      splitTitle2.revert();
+    };
+  }, { scope: containerRef, dependencies: [isMobile] });
 
   return (
     <section ref={containerRef} className="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 overflow-hidden border-b border-stitching">
       
       {/* Background Image full bleed, moody, immersive */}
       <div className="absolute inset-0 w-full h-full z-0 bg-stone-950">
-        <motion.div 
-          style={{ y: isMobile ? "0%" : yImage }} 
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+        <div 
+          ref={bgRef}
           className="relative w-full h-[120%] top-[-10%] will-change-transform"
         >
           {/* Main Leather/Fabric Texture Blend */}
@@ -52,13 +138,13 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-amber-900/20 md:bg-amber-900/10 md:mix-blend-overlay" />
           <div className="absolute inset-0 bg-gradient-to-tr from-stone-950/80 via-transparent to-stone-950/20" />
           
-          {/* Backlight (candle/lamp effect) - warm emanation (Heavy on GPU, disabled on mobile) */}
+          {/* Backlight (candle/lamp effect) - warm emanation */}
           <div className="hidden md:block absolute top-[30%] right-[20%] w-[60vw] h-[60vw] bg-amber-500/20 rounded-full blur-[140px] mix-blend-screen pointer-events-none" />
           
           {/* Gradient shadow to ground the bottom section naturally */}
           <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent pointer-events-none" />
           
-          {/* Bokeh Tool Detail (Heavy on GPU, disabled on mobile) */}
+          {/* Bokeh Tool Detail */}
           <div className="hidden md:block absolute -bottom-8 right-12 w-[30vw] h-[30vw] max-w-[400px] opacity-30 blur-xl pointer-events-none transform rotate-12">
             <Image 
               src="/images/product4.jpg" 
@@ -68,7 +154,7 @@ export default function HeroSection() {
               className="object-cover rounded-full"
             />
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-black/70 via-black/20 to-transparent pointer-events-none z-0" />
@@ -76,60 +162,44 @@ export default function HeroSection() {
       {/* Right Side Gradient for CTA Legibility */}
       <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-gradient-to-l from-black/80 via-black/40 to-transparent pointer-events-none z-0" />
 
-      {/* Left Side: Typography (Absolute positioned to match Navbar px) */}
-      <motion.div 
-        style={{ y: isMobile ? "0%" : yText, opacity: opacityText }}
-        className="absolute top-[25vh] md:top-[30vh] left-[24px] md:left-[48px] lg:left-[80px] z-10 flex flex-col gap-2"
-      >
-        <div className="overflow-hidden pb-4">
-          <motion.h1 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      {/* Left Side: Typography */}
+      <div className="absolute top-[25vh] md:top-[30vh] left-[24px] md:left-[48px] lg:left-[80px] z-10 flex flex-col gap-2">
+        <div className="pb-4" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
+          <h1 
+            ref={title1Ref}
             className="text-[17vw] lg:text-[12vw] leading-[0.9] font-serif uppercase tracking-tighter text-orange-50 drop-shadow-md"
           >
             BERNAL
-          </motion.h1>
+          </h1>
         </div>
-        <div className="overflow-hidden pb-4 ml-6 md:ml-20">
-          <motion.h2 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+        <div className="pb-4 ml-6 md:ml-20" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
+          <h2 
+            ref={title2Ref}
             className="text-[12vw] lg:text-[8vw] leading-[0.9] font-serif italic font-light lowercase text-orange-100/90 drop-shadow-sm"
           >
             atelier.
-          </motion.h2>
+          </h2>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Right Side: Floating Text (Absolute positioned to match stamp height) */}
-      <motion.div 
-        style={{ opacity: opacityText }}
-        className="absolute bottom-[56px] md:bottom-[64px] right-[24px] md:right-[180px] lg:right-[240px] z-10 flex flex-col gap-8 max-w-sm"
-      >
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-          className="text-orange-50/90 text-sm md:text-base font-light leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+      {/* Right Side: Floating Text */}
+      <div className="absolute bottom-[56px] md:bottom-[64px] right-[24px] md:right-[180px] lg:right-[240px] z-10 flex flex-col gap-8 max-w-sm">
+        <p 
+          ref={descRef}
+          className="text-orange-50/90 text-base md:text-lg font-light leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
         >
           Piezas de cuero genuino que envejecen con carácter. Diseñadas bajo un rigor industrial, creadas con pasión artesanal.
-        </motion.p>
+        </p>
         
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
+        <div ref={ctaRef}>
           <MagneticButton>
-            <a href="#gallery" className="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-orange-50/90 hover:text-amber-500 transition-colors duration-500 drop-shadow-md">
+            <a href="#gallery" className="group flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-orange-50/90 hover:text-amber-500 transition-colors duration-500 drop-shadow-md">
               <span className="w-12 h-px bg-stone-400 group-hover:w-20 group-hover:bg-amber-500 transition-all duration-500 ease-out"></span>
               Explorar Colección
             </a>
           </MagneticButton>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

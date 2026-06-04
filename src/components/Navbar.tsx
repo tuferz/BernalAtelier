@@ -20,14 +20,14 @@ export default function Navbar() {
         </div>
         
         <div className="hidden md:flex flex-1 justify-center gap-12">
-          <Link href="#gallery" className="text-[9px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold">Colección</Link>
-          <Link href="#about" className="text-[9px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold">Artesano</Link>
+          <Link href="#gallery" className="text-[11px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold">Colección</Link>
+          <Link href="#about" className="text-[11px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold">Artesano</Link>
         </div>
 
         <div className="flex-1 flex justify-end">
           <Link 
             href="#contact" 
-            className="text-[9px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold"
+            className="text-[11px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold"
           >
             Contacto
           </Link>

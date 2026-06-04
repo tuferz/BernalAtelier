@@ -4,10 +4,14 @@
   --color-stone-950: #130a06; /* Deep mahogany / cordovan */
   --color-stone-900: #1c100a;
   --color-stone-800: #2c1a12;
-  --color-stone-200: #e3dcd8;
-  --color-stone-400: #a3958c;
+  --color-stone-700: #5c4a3e; /* ~3.0:1 — decorative only */
+  --color-stone-600: #7a685a; /* ~3.9:1 — small labels */
+  --color-stone-500: #958678; /* ~4.8:1 — secondary text */
+  --color-stone-400: #b0a295; /* ~6.2:1 — body text */
+  --color-stone-300: #ccc1b8; /* ~9.0:1 — emphasized body */
+  --color-stone-200: #e3dcd8; /* ~12.5:1 — headings */
   --color-leather: #8c4a23;
-  --color-leather-light: #b35f2d;
+  --color-leather-light: #c46a32; /* bumped for better contrast */
   --color-leather-accent: #d97838;
   
   --font-serif: var(--font-playfair), serif;
@@ -15,6 +19,7 @@
 
   --animate-spin-slow: spin 20s linear infinite;
 }
+
 
 @keyframes spin {
   from { transform: rotate(0deg); }
@@ -38,11 +43,11 @@
   }
 
   .border-stitching {
-    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border: 1px dashed rgba(196, 106, 50, 0.25); /* leather-light with opacity */
   }
 
   .border-stitching-solid {
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(196, 106, 50, 0.15);
   }
 
   .deboss {
