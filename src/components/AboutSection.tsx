@@ -244,11 +244,11 @@ export default function AboutSection() {
             </div>
 
             {/* Founder Signature */}
-            <div className="flex items-center gap-5 pt-4 about-text-reveal">
-              <div className="w-12 h-px bg-gradient-to-r from-leather/60 to-transparent origin-left about-line" />
+            <div className="flex items-center gap-4 md:gap-5 pt-4 about-text-reveal">
+              <div className="w-8 md:w-12 h-px bg-gradient-to-r from-leather/60 to-transparent origin-left about-line" />
               <div>
-                <span className="text-xs uppercase tracking-[0.3em] text-stone-500 block mb-1">Fundador & Artesano</span>
-                <span className="text-xl font-serif italic text-orange-50/90">Eben.</span>
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] text-stone-500 block mb-1">Fundador & Artesano</span>
+                <span className="text-lg md:text-xl font-serif italic text-orange-50/90">Eben.</span>
               </div>
             </div>
           </div>
