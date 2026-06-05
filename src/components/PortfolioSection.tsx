@@ -44,13 +44,14 @@ export default function PortfolioSection() {
     // Animación de scroll horizontal (Pinning)
     const totalScrollWidth = scrollContainerRef.current ? scrollContainerRef.current.scrollWidth - window.innerWidth : 0;
     
-    if (totalScrollWidth > 0 && window.innerWidth > 768) {
+    if (scrollContainerRef.current && window.innerWidth > 768) {
       // Setup pin for desktop: Animate the container horizontally
       gsap.to(scrollContainerRef.current, {
         x: () => {
           const containerWidth = scrollContainerRef.current!.scrollWidth;
           const viewportWidth = window.innerWidth;
-          return -(containerWidth - viewportWidth + window.innerWidth * 0.1); 
+          // Con padding simétrico, el desplazamiento total centrará perfectamente la penúltima imagen (3ra).
+          return -(containerWidth - viewportWidth); 
         },
         ease: "none",
         scrollTrigger: {
@@ -58,7 +59,7 @@ export default function PortfolioSection() {
           pin: true,
           scrub: 1,
           start: "top top", 
-          end: () => `+=${totalScrollWidth}`, // Scroll distance matches the width
+          end: () => `+=${(scrollContainerRef.current!.scrollWidth - window.innerWidth) * 1.5}`, // Multiplicador para que el scroll sea más largo y suave
           invalidateOnRefresh: true,
         }
       });
@@ -111,14 +112,15 @@ export default function PortfolioSection() {
 
         {/* Contenedor que será animado horizontalmente */}
         <div className="flex-1 flex items-center min-h-0 w-full">
-          <div ref={scrollContainerRef} className="flex flex-row gap-6 md:gap-0 px-6 md:px-0 md:pl-[10vw] w-full overflow-x-auto md:overflow-visible snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          {/* Al usar padding simétrico, garantizamos que la posición inicial y final mantengan balance visual */}
+          <div ref={scrollContainerRef} className="flex-shrink-0 flex flex-row gap-6 md:gap-0 px-6 md:px-[6vw] lg:px-[7.5vw] w-full md:w-max overflow-x-auto md:overflow-visible snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {PRODUCTS.map((p, i) => (
             <div
               key={i}
               ref={(el) => { cardsRef.current[i] = el; }}
-              className="flex-shrink-0 flex flex-col gap-4 md:gap-6 md:mr-16 lg:mr-24 w-[85vw] md:w-auto snap-center"
+              className={`flex-shrink-0 flex flex-col gap-4 md:gap-6 w-[85vw] md:w-auto snap-center ${i !== PRODUCTS.length - 1 ? 'md:mr-16 lg:mr-24' : ''}`}
             >
-              {/* Image Container strictly bound by height to prevent text push-down */}
+              {/* Image Container directly sets height to restore original size, and aspect ratio determines its width automatically */}
               <div className="relative overflow-hidden aspect-[4/3] md:aspect-[3/4] h-[35vh] md:h-[45vh] lg:h-[50vh] bg-stone-900 group cursor-pointer border border-white/[0.04]">
                 <Image
                   src={p.img}
