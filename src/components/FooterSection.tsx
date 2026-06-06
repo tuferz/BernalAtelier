@@ -16,16 +16,26 @@ export default function FooterSection() {
   const footerBottomRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    const isMob = window.innerWidth < 768;
     // Fade out the global stamp when footer is reached
-    gsap.to("#fixed-stamp", {
-      opacity: 0,
-      scrollTrigger: {
+    if (!isMob) {
+      gsap.to("#fixed-stamp", {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "top 20%",
+          scrub: true,
+        }
+      });
+    } else {
+      ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true,
-      }
-    });
+        start: "top 60%",
+        onEnter: () => gsap.to("#fixed-stamp", { opacity: 0, duration: 0.5 }),
+        onLeaveBack: () => gsap.to("#fixed-stamp", { opacity: 1, duration: 0.5 })
+      });
+    }
   });
 
   useGSAP(() => {
@@ -116,7 +126,7 @@ export default function FooterSection() {
                 <span ref={title1Ref} className="inline-block">Legado</span>
               </div>
               <div style={{ clipPath: "polygon(-5% 0, 105% 0, 105% 120%, -5% 120%)" }}>
-                <span ref={title2Ref} className="italic font-normal text-stone-500 inline-block">en Cuero.</span>
+                <span ref={title2Ref} className="italic font-normal text-stone-500 inline-block pr-2">en Cuero.</span>
               </div>
             </h2>
           </div>

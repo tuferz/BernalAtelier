@@ -98,18 +98,35 @@ export default function AboutSection() {
     const imgMain = imgMainRef.current;
 
     // Main image overlay clip reveal
-    gsap.fromTo(imgMain, 
-      { clipPath: "inset(100% 0 0 0)" },
-      {
-        clipPath: "inset(0% 0 0 0)",
-        duration: 1.0,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: imgMain,
-          start: "top 85%",
+    if (!isMob) {
+      gsap.fromTo(imgMain, 
+        { clipPath: "inset(100% 0 0 0)" },
+        {
+          clipPath: "inset(0% 0 0 0)",
+          duration: 1.5,
+          ease: "power3.inOut",
+          scrollTrigger: {
+            trigger: imgMain,
+            start: "top 85%",
+          }
         }
-      }
-    );
+      );
+    } else {
+      // Mobile: Hardware accelerated transform and opacity instead of heavy clipPath
+      gsap.fromTo(imgMain, 
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.0,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: imgMain,
+            start: "top 85%",
+          }
+        }
+      );
+    }
 
     // Parallax on images and background (Desktop only to maximize mobile performance)
     if (!isMob) {
