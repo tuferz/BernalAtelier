@@ -27,31 +27,49 @@ export default function AboutSection() {
   const bgRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const splitTitle1 = new SplitType(title1Ref.current!, { types: 'chars' });
-    const splitTitle2 = new SplitType(title2Ref.current!, { types: 'chars' });
+    const isMob = window.innerWidth < 768;
+    let splitTitle1: SplitType | null = null;
+    let splitTitle2: SplitType | null = null;
     
-    const chars1 = splitTitle1.chars || [];
-    const chars2 = splitTitle2.chars || [];
-    const allChars = [...chars1, ...chars2];
-    
-    gsap.set(allChars, { y: 100, opacity: 0 });
+    if (!isMob) {
+      splitTitle1 = new SplitType(title1Ref.current!, { types: 'chars' });
+      splitTitle2 = new SplitType(title2Ref.current!, { types: 'chars' });
+      
+      const chars1 = splitTitle1.chars || [];
+      const chars2 = splitTitle2.chars || [];
+      const allChars = [...chars1, ...chars2];
+      
+      gsap.set(allChars, { y: 100, opacity: 0 });
+      ScrollTrigger.batch(allChars, {
+        onEnter: (elements) => {
+          gsap.to(elements, {
+            y: 0,
+            opacity: 1,
+            duration: 1.5,
+            stagger: 0.03,
+            ease: "expo.out",
+            overwrite: "auto"
+          });
+        },
+        start: "top 85%",
+      });
+    } else {
+      gsap.set([title1Ref.current, title2Ref.current], { y: 30, opacity: 0 });
+      gsap.to([title1Ref.current, title2Ref.current], {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: title1Ref.current,
+          start: "top 85%",
+        }
+      });
+    }
+
     gsap.set(".about-text-reveal", { y: 30, opacity: 0 });
     gsap.set(".about-line", { scaleX: 0 });
-
-    // 1. Text reveals
-    ScrollTrigger.batch(allChars, {
-      onEnter: (elements) => {
-        gsap.to(elements, {
-          y: 0,
-          opacity: 1,
-          duration: 1.5,
-          stagger: 0.03,
-          ease: "expo.out",
-          overwrite: "auto"
-        });
-      },
-      start: "top 85%",
-    });
 
     // 2. Paragraph and Line reveals
     gsap.to(".about-text-reveal", {
@@ -93,12 +111,24 @@ export default function AboutSection() {
       }
     );
 
+    // Parallax on images and background (Desktop only to maximize mobile performance)
+    if (!isMob) {
+      gsap.fromTo(imgMain!.querySelector('img'), 
+        { yPercent: -15 },
+        {
+          yPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
 
-    // Parallax on images
-    gsap.fromTo(imgMain!.querySelector('img'), 
-      { yPercent: -15 },
-      {
-        yPercent: 15,
+      gsap.to(bgRef.current, {
+        yPercent: 20,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -106,22 +136,8 @@ export default function AboutSection() {
           end: "bottom top",
           scrub: true
         }
-      }
-    );
-
-
-
-    // Background Parallax
-    gsap.to(bgRef.current, {
-      yPercent: 20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true
-      }
-    });
+      });
+    }
 
     // 4. Counters
     counterRefs.current.forEach((counter, i) => {
@@ -139,8 +155,8 @@ export default function AboutSection() {
     });
 
     return () => {
-      splitTitle1.revert();
-      splitTitle2.revert();
+      if (splitTitle1) splitTitle1.revert();
+      if (splitTitle2) splitTitle2.revert();
     };
   }, { scope: sectionRef });
 

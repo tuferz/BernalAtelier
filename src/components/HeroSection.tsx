@@ -29,18 +29,29 @@ export default function HeroSection() {
   }, []);
 
   useGSAP(() => {
-    // 1. Split Text Setup
-    const splitTitle1 = new SplitType(title1Ref.current!, { types: 'chars' });
-    const splitTitle2 = new SplitType(title2Ref.current!, { types: 'chars' });
+    let splitTitle1: SplitType | null = null;
+    let splitTitle2: SplitType | null = null;
+    let chars1: HTMLElement[] = [];
+    let chars2: HTMLElement[] = [];
+
+    if (!isMobile) {
+      // 1. Split Text Setup
+      splitTitle1 = new SplitType(title1Ref.current!, { types: 'chars' });
+      splitTitle2 = new SplitType(title2Ref.current!, { types: 'chars' });
+      
+      chars1 = splitTitle1.chars || [];
+      chars2 = splitTitle2.chars || [];
+      
+      // Hide initially to prevent flash
+      gsap.set([...chars1, ...chars2], { opacity: 0 });
+      gsap.set([title1Ref.current, title2Ref.current], { opacity: 1 }); // Reveal parent after chars are hidden
+      gsap.set(chars1, { y: 100 });
+      gsap.set(chars2, { y: 100 });
+    } else {
+      // On mobile, animate parent elements instead of splitting chars (fixes Safari clipping & performance)
+      gsap.set([title1Ref.current, title2Ref.current], { opacity: 0, y: 30 });
+    }
     
-    const chars1 = splitTitle1.chars || [];
-    const chars2 = splitTitle2.chars || [];
-    
-    // Hide initially to prevent flash
-    gsap.set([...chars1, ...chars2], { opacity: 0 });
-    gsap.set([title1Ref.current, title2Ref.current], { opacity: 1 }); // Reveal parent after chars are hidden
-    gsap.set(chars1, { y: 100 });
-    gsap.set(chars2, { y: 100 });
     gsap.set(bgRef.current, { scale: 1.1, opacity: 0 });
 
     // 2. Initial Load Timeline
@@ -54,23 +65,40 @@ export default function HeroSection() {
       ease: "power2.out"
     }, 0);
 
-    // BERNAL (Char by char)
-    tl.to(chars1, {
-      y: 0,
-      opacity: 1,
-      duration: 1.5,
-      stagger: 0.04,
-      ease: "expo.out"
-    }, 0.2);
+    if (!isMobile) {
+      // BERNAL (Char by char)
+      tl.to(chars1, {
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        stagger: 0.04,
+        ease: "expo.out"
+      }, 0.2);
 
-    // atelier (Char by char)
-    tl.to(chars2, {
-      y: 0,
-      opacity: 1,
-      duration: 1.5,
-      stagger: 0.03,
-      ease: "expo.out"
-    }, 0.5);
+      // atelier (Char by char)
+      tl.to(chars2, {
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        stagger: 0.03,
+        ease: "expo.out"
+      }, 0.5);
+    } else {
+      // Mobile header animation
+      tl.to(title1Ref.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out"
+      }, 0.2);
+
+      tl.to(title2Ref.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out"
+      }, 0.4);
+    }
 
     // Description & CTA fade up
     tl.fromTo(descRef.current, 
@@ -84,7 +112,7 @@ export default function HeroSection() {
       1.5
     );
 
-    // 3. Scroll Parallax Effects
+    // 3. Scroll Parallax Effects (Desktop only)
     if (!isMobile) {
       gsap.to(bgRef.current, {
         yPercent: 20,
@@ -112,8 +140,8 @@ export default function HeroSection() {
 
     // Cleanup split text on unmount
     return () => {
-      splitTitle1.revert();
-      splitTitle2.revert();
+      if (splitTitle1) splitTitle1.revert();
+      if (splitTitle2) splitTitle2.revert();
     };
   }, { scope: containerRef, dependencies: [isMobile] });
 

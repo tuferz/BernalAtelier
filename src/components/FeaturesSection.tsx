@@ -41,30 +41,51 @@ export default function FeaturesSection() {
   const title2Ref = useRef<HTMLHeadingElement>(null);
 
   useGSAP(() => {
-    // 1. Header SplitType Reveal
-    const splitTitle1 = new SplitType(title1Ref.current!, { types: 'chars' });
-    const splitTitle2 = new SplitType(title2Ref.current!, { types: 'chars' });
+    const isMob = window.innerWidth < 768;
+    let splitTitle1: SplitType | null = null;
+    let splitTitle2: SplitType | null = null;
     
-    const chars1 = splitTitle1.chars || [];
-    const chars2 = splitTitle2.chars || [];
-    const allChars = [...chars1, ...chars2];
-    
-    gsap.set(allChars, { y: 100, opacity: 0 });
-    gsap.set(".feature-header-sub", { opacity: 0, y: 20 });
+    if (!isMob) {
+      // 1. Header SplitType Reveal (Desktop only)
+      splitTitle1 = new SplitType(title1Ref.current!, { types: 'chars' });
+      splitTitle2 = new SplitType(title2Ref.current!, { types: 'chars' });
+      
+      const chars1 = splitTitle1.chars || [];
+      const chars2 = splitTitle2.chars || [];
+      const allChars = [...chars1, ...chars2];
+      
+      gsap.set(allChars, { y: 100, opacity: 0 });
+      
+      ScrollTrigger.batch(allChars, {
+        onEnter: (elements) => {
+          gsap.to(elements, {
+            y: 0,
+            opacity: 1,
+            duration: 1.5,
+            stagger: 0.03,
+            ease: "expo.out",
+            overwrite: "auto"
+          });
+        },
+        start: "top 85%",
+      });
+    } else {
+      // Mobile header animation (no split chars to prevent clipping)
+      gsap.set([title1Ref.current, title2Ref.current], { y: 30, opacity: 0 });
+      gsap.to([title1Ref.current, title2Ref.current], {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".feature-header-container",
+          start: "top 85%",
+        }
+      });
+    }
 
-    ScrollTrigger.batch(allChars, {
-      onEnter: (elements) => {
-        gsap.to(elements, {
-          y: 0,
-          opacity: 1,
-          duration: 1.5,
-          stagger: 0.03,
-          ease: "expo.out",
-          overwrite: "auto"
-        });
-      },
-      start: "top 85%",
-    });
+    gsap.set(".feature-header-sub", { opacity: 0, y: 20 });
 
     gsap.to(".feature-header-sub", {
       opacity: 1,
@@ -84,48 +105,97 @@ export default function FeaturesSection() {
     gsap.set(".feature-line", { scaleX: 0 });
     gsap.set(".feature-text", { y: 20, opacity: 0 });
 
-    ScrollTrigger.batch(".feature-card", {
-      onEnter: (elements) => {
-        // Card wrapper
-        gsap.to(elements, {
-          y: 0,
-          opacity: 1,
-          duration: 1.6,
-          stagger: 0.2,
-          ease: "power3.out",
-          overwrite: "auto"
-        });
-
-        // Inner image scale down (settle)
-        elements.forEach((card, i) => {
-          gsap.to(card.querySelector(".feature-img-inner"), {
-            scale: 1,
-            duration: 2.5,
-            delay: i * 0.2,
-            ease: "power2.out"
-          });
-
-          // Line stitch
-          gsap.to(card.querySelector(".feature-line"), {
-            scaleX: 1,
-            duration: 1.5,
-            delay: 0.4 + i * 0.2,
-            ease: "power4.inOut"
-          });
-
-          // Text reveal
-          gsap.to(card.querySelectorAll(".feature-text"), {
+    if (!isMob) {
+      ScrollTrigger.batch(".feature-card", {
+        onEnter: (elements) => {
+          // Card wrapper
+          gsap.to(elements, {
             y: 0,
             opacity: 1,
-            duration: 1.2,
-            stagger: 0.1,
-            delay: 0.3 + i * 0.2,
-            ease: "power2.out"
+            duration: 1.6,
+            stagger: 0.2,
+            ease: "power3.out",
+            overwrite: "auto"
           });
+
+          // Inner image scale down (settle)
+          elements.forEach((card, i) => {
+            gsap.to(card.querySelector(".feature-img-inner"), {
+              scale: 1,
+              duration: 2.5,
+              delay: i * 0.2,
+              ease: "power2.out"
+            });
+
+            // Line stitch
+            gsap.to(card.querySelector(".feature-line"), {
+              scaleX: 1,
+              duration: 1.5,
+              delay: 0.4 + i * 0.2,
+              ease: "power4.inOut"
+            });
+
+            // Text reveal
+            gsap.to(card.querySelectorAll(".feature-text"), {
+              y: 0,
+              opacity: 1,
+              duration: 1.2,
+              stagger: 0.1,
+              delay: 0.3 + i * 0.2,
+              ease: "power2.out"
+            });
+          });
+        },
+        start: "top 85%"
+      });
+    } else {
+      // Simpler, faster direct scroll trigger per card on mobile for better performance
+      const cards = gsap.utils.toArray<HTMLElement>(".feature-card");
+      cards.forEach((card) => {
+        gsap.to(card, {
+          y: 0,
+          opacity: 1,
+          duration: 1.0,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+          }
         });
-      },
-      start: "top 85%"
-    });
+        
+        gsap.to(card.querySelector(".feature-img-inner"), {
+          scale: 1,
+          duration: 1.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+          }
+        });
+
+        gsap.to(card.querySelector(".feature-line"), {
+          scaleX: 1,
+          duration: 1.0,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+          }
+        });
+
+        gsap.to(card.querySelectorAll(".feature-text"), {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.05,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+          }
+        });
+      });
+    }
 
     // 3. Footer line
     gsap.fromTo(".feature-footer", 
@@ -143,8 +213,8 @@ export default function FeaturesSection() {
     );
 
     return () => {
-      splitTitle1.revert();
-      splitTitle2.revert();
+      if (splitTitle1) splitTitle1.revert();
+      if (splitTitle2) splitTitle2.revert();
     };
   }, { scope: sectionRef });
 
