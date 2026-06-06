@@ -111,10 +111,10 @@ export default function FooterSection() {
   return (
     <footer id="contact" ref={sectionRef} className="bg-stone-950 min-h-screen flex flex-col py-12 md:py-16 border-t border-stitching relative overflow-hidden">
       {/* Debossed overlay */}
-      <div className="absolute inset-0 deboss pointer-events-none mix-blend-multiply opacity-50" />
+      <div className="absolute inset-0 deboss pointer-events-none md:mix-blend-multiply opacity-50" />
 
       {/* Subtle bottom glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[40vh] bg-amber-900/10 rounded-t-[100%] blur-[120px] pointer-events-none" />
+      <div className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[40vh] bg-amber-900/10 rounded-t-[100%] blur-[120px] pointer-events-none" />
 
       <div className="w-full max-w-7xl mx-auto px-6 relative z-10 flex-1 flex flex-col">
 

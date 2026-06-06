@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ArtisanStamp({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center opacity-90 mix-blend-screen text-amber-500 drop-shadow-[0_0_8px_rgba(217,119,6,0.5)] ${className}`}>
+    <div className={`relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center opacity-90 md:mix-blend-screen text-amber-500 drop-shadow-[0_0_8px_rgba(217,119,6,0.5)] ${className}`}>
       <motion.svg 
         viewBox="0 0 100 100" 
         className="absolute inset-0 w-full h-full"

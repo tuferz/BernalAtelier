@@ -185,11 +185,11 @@ export default function AboutSection() {
         ref={bgRef}
         className="absolute inset-0 w-full h-[120%] -top-[10%] pointer-events-none"
       >
-        <Image src="/images/granite.jpg" alt="" fill sizes="100vw" className="object-cover opacity-[0.07] mix-blend-luminosity" />
+        <Image src="/images/granite.jpg" alt="" fill sizes="100vw" className="object-cover opacity-[0.07] md:mix-blend-luminosity" />
       </div>
       
       {/* Warm ambient glow */}
-      <div className="absolute top-[20%] left-[10%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] bg-amber-800/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="hidden md:block absolute top-[20%] left-[10%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] bg-amber-800/10 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Top stitching separator */}
       <div className="absolute top-0 left-6 right-6 md:left-12 md:right-12 border-t border-stitching" />

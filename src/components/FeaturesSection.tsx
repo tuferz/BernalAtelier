@@ -222,10 +222,10 @@ export default function FeaturesSection() {
     <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-center py-12 md:py-16 text-stone-200 overflow-hidden bg-stone-950">
       
       {/* Debossed overlay */}
-      <div className="absolute inset-0 deboss mix-blend-multiply pointer-events-none opacity-50" />
+      <div className="absolute inset-0 deboss md:mix-blend-multiply pointer-events-none opacity-50" />
 
       {/* Subtle warm glow */}
-      <div className="absolute top-[40%] left-[50%] -translate-x-1/2 w-[60vw] h-[40vw] max-w-[800px] max-h-[500px] bg-amber-900/6 rounded-full blur-[120px] pointer-events-none" />
+      <div className="hidden md:block absolute top-[40%] left-[50%] -translate-x-1/2 w-[60vw] h-[40vw] max-w-[800px] max-h-[500px] bg-amber-900/6 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Top stitching */}
       <div className="absolute top-0 left-6 right-6 md:left-12 md:right-12 border-t border-stitching" />
