@@ -168,12 +168,12 @@ export default function FeaturesSection() {
             <span className="text-leather-light text-xs uppercase tracking-[0.4em] mb-4 block feature-header-sub">
               El Compromiso
             </span>
-            <div className="pb-4" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
+            <div className="pb-4" style={{ clipPath: "polygon(-5% 0, 105% 0, 105% 120%, -5% 120%)" }}>
               <h2 ref={title1Ref} className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.05] tracking-tight text-stone-200">
                 Calidad que
               </h2>
             </div>
-            <div className="pb-4 -mt-4 md:-mt-6 ml-8" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
+            <div className="pb-4 -mt-4 md:-mt-6 ml-8" style={{ clipPath: "polygon(-5% 0, 105% 0, 105% 120%, -5% 120%)" }}>
               <h2 ref={title2Ref} className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.05] tracking-tight italic font-normal text-stone-400">
                 Trasciende.
               </h2>
@@ -209,12 +209,9 @@ export default function FeaturesSection() {
 
                 {/* Text content */}
                 <div className="p-6 md:p-8 flex flex-col gap-4">
-                  {/* Numeral + accent */}
+                  {/* Accent */}
                   <div className="flex items-center gap-4">
-                    <span className="text-[11px] uppercase tracking-[0.3em] text-leather-light/70 font-mono feature-text">
-                      {feature.num}
-                    </span>
-                    <div className="h-px flex-1 bg-gradient-to-r from-white/[0.08] to-transparent origin-left feature-line" />
+                    <div className="h-px w-8 md:w-12 bg-gradient-to-r from-leather/60 to-transparent origin-left feature-line" />
                     <span className="text-[11px] uppercase tracking-[0.25em] text-stone-500 feature-text">
                       {feature.accent}
                     </span>

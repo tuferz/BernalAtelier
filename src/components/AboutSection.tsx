@@ -84,8 +84,8 @@ export default function AboutSection() {
       { clipPath: "inset(100% 0 0 0)" },
       {
         clipPath: "inset(0% 0 0 0)",
-        duration: 1.8,
-        ease: "power3.inOut",
+        duration: 1.0,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: imgMain,
           start: "top 85%",
@@ -211,12 +211,12 @@ export default function AboutSection() {
 
             {/* Title */}
             <div className="flex flex-col gap-0 md:gap-2">
-              <div className="pb-2" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
+              <div className="pb-2" style={{ clipPath: "polygon(-5% 0, 105% 0, 105% 120%, -5% 120%)" }}>
                 <h2 ref={title1Ref} className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.05] tracking-tight text-stone-200">
                   Dualidad
                 </h2>
               </div>
-              <div className="pb-2 ml-8 md:ml-12" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
+              <div className="pb-2 ml-8 md:ml-12" style={{ clipPath: "polygon(-5% 0, 105% 0, 105% 120%, -5% 120%)" }}>
                 <h2 ref={title2Ref} className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.05] tracking-tight italic font-normal text-stone-400">
                   Técnica.
                 </h2>

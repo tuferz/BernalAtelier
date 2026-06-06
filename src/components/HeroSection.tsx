@@ -165,15 +165,15 @@ export default function HeroSection() {
 
       {/* Left Side: Typography */}
       <div className="absolute top-[22vh] md:top-[30vh] left-[24px] sm:left-[32px] md:left-[48px] lg:left-[80px] z-10 flex flex-col gap-2">
-        <div className="pb-4" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
+        <div className="pb-4" style={{ clipPath: "polygon(-5% 0, 105% 0, 105% 120%, -5% 120%)" }}>
           <h1 
             ref={title1Ref}
-            className="text-[16vw] lg:text-[12vw] leading-[0.9] font-serif uppercase tracking-tighter text-orange-50 drop-shadow-md opacity-0"
+            className="text-[14vw] sm:text-[16vw] lg:text-[12vw] leading-[0.9] font-serif uppercase tracking-tighter text-orange-50 drop-shadow-md opacity-0"
           >
             BERNAL
           </h1>
         </div>
-        <div className="pb-4 ml-6 md:ml-20" style={{ clipPath: "polygon(0 0, 100% 0, 100% 120%, 0% 120%)" }}>
+        <div className="pb-4 ml-6 md:ml-20" style={{ clipPath: "polygon(-5% 0, 105% 0, 105% 120%, -5% 120%)" }}>
           <h2 
             ref={title2Ref}
             className="text-[11vw] lg:text-[8vw] leading-[0.9] font-serif italic font-light lowercase text-orange-100/90 drop-shadow-sm opacity-0"

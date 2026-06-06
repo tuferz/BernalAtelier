@@ -33,7 +33,7 @@ export default function PromoPage() {
         <div className="relative z-10 grid grid-cols-2 gap-12 w-full max-w-3xl">
           {/* Tarjetero */}
           <div className="flex flex-col gap-6">
-            <div className="relative overflow-hidden aspect-3/4 bg-stone-900 w-full border-stitching-solid">
+            <div className="relative overflow-hidden aspect-3/4 bg-stone-900 w-full border border-stitching-solid">
               <Image
                 src="/images/product4.jpg"
                 alt="Tarjetero Minimalista"
@@ -49,7 +49,7 @@ export default function PromoPage() {
 
           {/* Money Clip */}
           <div className="flex flex-col gap-6 mt-12">
-            <div className="relative overflow-hidden aspect-3/4 bg-stone-900 w-full border-stitching-solid">
+            <div className="relative overflow-hidden aspect-3/4 bg-stone-900 w-full border border-stitching-solid">
               <Image
                 src="/images/product3.jpg"
                 alt="Money Clip"
