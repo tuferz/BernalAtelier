@@ -54,7 +54,7 @@ export default function FooterSection() {
       const chars1 = split1.chars || [];
       const chars2 = split2.chars || [];
       allChars = [...chars1, ...chars2];
-  
+
       gsap.set(allChars, { y: 150, rotate: 10, opacity: 0 });
     } else {
       // Mobile header (no split chars to prevent clipping)
@@ -148,14 +148,13 @@ export default function FooterSection() {
         {/* Footer Bottom Links (3 columns for perfect centering) */}
         <div ref={footerBottomRef} className="pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
           {/* Left: Logo */}
-          <div className="flex justify-center md:justify-start md:-ml-24">
+          <div className="flex justify-center md:justify-start md:-ml-22">
             <LogoSVG className="w-16 h-16 md:w-20 md:h-20 text-stone-500 hover:text-amber-600 transition-colors duration-500" />
           </div>
 
           {/* Center: Social Links */}
           <div className="flex justify-center gap-8 text-[11px] md:text-xs uppercase tracking-[0.3em] text-stone-400">
-            <a href="#" className="hover:text-amber-500 transition-colors">Instagram</a>
-            <a href="#" className="hover:text-amber-500 transition-colors">Behance</a>
+            <a href="https://www.instagram.com/bernal_atelier/" className="pl-[0.3em] pb-1 border-b border-stone-700 hover:border-amber-500 hover:text-amber-500 transition-all duration-300" target="_blank" rel="noopener noreferrer">Instagram</a>
           </div>
 
           {/* Right: Copyright */}

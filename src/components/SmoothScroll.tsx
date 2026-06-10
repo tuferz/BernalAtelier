@@ -19,8 +19,17 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       smoothWheel: true,
       touchMultiplier: 2,
     });
-
+    
     lenis.on('scroll', ScrollTrigger.update);
+
+    const onScrollTo = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const target = document.querySelector(customEvent.detail);
+      if (target) {
+        lenis.scrollTo(target);
+      }
+    };
+    window.addEventListener('lenis-scroll', onScrollTo);
 
     const update = (time: number) => {
       lenis.raf(time * 1000);
@@ -30,6 +39,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      window.removeEventListener('lenis-scroll', onScrollTo);
       gsap.ticker.remove(update);
       lenis.destroy();
     };

@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 import LogoSVG from "./LogoSVG";
 
 export default function Navbar() {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
+    e.preventDefault();
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent('lenis-scroll', { detail: targetId }));
+    }
+  };
+
   return (
     <motion.nav 
       initial={{ y: -20, opacity: 0 }}
@@ -20,13 +27,26 @@ export default function Navbar() {
         </div>
         
         <div className="hidden md:flex flex-1 justify-center gap-12">
-          <Link href="#gallery" className="text-[11px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold">Colección</Link>
-          <Link href="#about" className="text-[11px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold">Artesano</Link>
+          <Link 
+            href="#gallery" 
+            onClick={(e) => handleScroll(e, '#gallery')}
+            className="text-[11px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold"
+          >
+            Colección
+          </Link>
+          <Link 
+            href="#about" 
+            onClick={(e) => handleScroll(e, '#about')}
+            className="text-[11px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold"
+          >
+            Artesano
+          </Link>
         </div>
 
         <div className="flex-1 flex justify-end">
           <Link 
             href="#contact" 
+            onClick={(e) => handleScroll(e, '#contact')}
             className="text-[11px] uppercase tracking-[0.3em] text-white hover:text-amber-500 transition-colors drop-shadow-lg font-semibold"
           >
             Contacto
