@@ -302,7 +302,7 @@ export default function OrderWizardSection() {
                           type="text"
                           value={formData.contactName}
                           onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                          placeholder="Ej. Alejandro Bernal"
+                          placeholder="Ej. Ezer García"
                           className="w-full bg-stone-950/60 border border-white/[0.05] focus:border-leather focus:bg-stone-950 outline-none text-stone-200 placeholder:text-stone-600 p-5 md:p-6 text-2xl md:text-3xl font-light transition-all duration-500 focus:shadow-[0_0_30px_rgba(196,106,50,0.08)]"
                         />
                         <div className="absolute inset-0 border-stitching pointer-events-none opacity-0 group-focus-within:opacity-20 transition-opacity duration-500 m-1.5"></div>
