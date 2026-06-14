@@ -121,7 +121,7 @@ export default function PortfolioSection() {
               className={`flex-shrink-0 flex flex-col gap-4 md:gap-6 w-[85vw] md:w-auto snap-center ${i !== PRODUCTS.length - 1 ? 'md:mr-16 lg:mr-24' : ''}`}
             >
               {/* Image Container directly sets height to restore original size, and aspect ratio determines its width automatically */}
-              <div className="relative overflow-hidden aspect-[4/3] md:aspect-[3/4] h-[35vh] md:h-[45vh] lg:h-[50vh] bg-stone-900 group cursor-pointer border border-white/[0.04]">
+              <div className="relative overflow-hidden aspect-[4/3] md:aspect-[3/4] h-[35vh] md:h-[45vh] lg:h-[50vh] bg-stone-900 group cursor-pointer border border-white/10">
                 <Image
                   src={p.img}
                   alt={p.title}

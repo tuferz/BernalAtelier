@@ -67,3 +67,12 @@
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }
+
+/* Hide scrollbars for specific elements */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
