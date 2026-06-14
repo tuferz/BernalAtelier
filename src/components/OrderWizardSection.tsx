@@ -207,7 +207,7 @@ export default function OrderWizardSection() {
       </div>
 
       {/* Ambient Glow */}
-      <div className="absolute top-1/2 left-3/4 -translate-y-1/2 -translate-x-1/2 w-[50vw] h-[50vw] bg-leather-light/5 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="hidden md:block absolute top-1/2 left-3/4 -translate-y-1/2 -translate-x-1/2 w-[50vw] h-[50vw] bg-leather-light/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
       {isSubmitted ? (
         <div className="relative z-10 w-full h-full min-h-[100svh] flex flex-col items-center justify-center">

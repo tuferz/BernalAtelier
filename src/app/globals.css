@@ -63,8 +63,6 @@
 
 /* Hardware acceleration for GSAP SplitType elements */
 .char, .word, .line {
-  will-change: transform, opacity;
-  transform-style: preserve-3d;
   backface-visibility: hidden;
 }
 

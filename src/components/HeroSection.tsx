@@ -152,7 +152,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 w-full h-full z-0 bg-stone-950">
         <div 
           ref={bgRef}
-          className="relative w-full h-[120%] top-[-10%] will-change-transform opacity-0"
+          className="relative w-full h-[120%] top-[-10%] opacity-0"
         >
           {/* Main Leather/Fabric Texture Blend */}
           <Image 
@@ -215,7 +215,7 @@ export default function HeroSection() {
       <div className="absolute bottom-[96px] md:bottom-[64px] left-[24px] md:left-auto right-[24px] md:right-[180px] lg:right-[240px] z-10 flex flex-col gap-8 max-w-[280px] md:max-w-sm">
         <p 
           ref={descRef}
-          className="text-orange-50/90 text-sm md:text-lg font-light leading-relaxed will-change-transform opacity-0"
+          className="text-orange-50/90 text-sm md:text-lg font-light leading-relaxed opacity-0"
           style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
         >
           Piezas de cuero genuino que envejecen con carácter. Diseñadas bajo un rigor industrial, creadas con pasión artesanal.
@@ -223,7 +223,7 @@ export default function HeroSection() {
         
         <div ref={ctaRef} className="opacity-0">
           <MagneticButton>
-            <a href="#gallery" className="group flex items-center gap-4 text-[10px] md:text-xs uppercase tracking-[0.3em] text-orange-50/90 hover:text-amber-500 transition-colors duration-500 will-change-opacity" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>
+            <a href="#gallery" className="group flex items-center gap-4 text-[10px] md:text-xs uppercase tracking-[0.3em] text-orange-50/90 hover:text-amber-500 transition-colors duration-500" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>
               <span className="w-8 md:w-12 h-px bg-stone-400 group-hover:w-16 md:group-hover:w-20 group-hover:bg-amber-500 transition-all duration-500 ease-out"></span>
               Explorar Colección
             </a>
