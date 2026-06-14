@@ -260,7 +260,7 @@ export default function FeaturesSection() {
           {features.map((feature, i) => (
             <div key={i} className="group relative feature-card">
               {/* Card container */}
-              <div className="relative overflow-hidden rounded-sm border border-white/10 bg-stone-900/50">
+              <div className="relative overflow-hidden rounded-sm border border-white/10 bg-stone-900/80">
                 
                 {/* Image strip at top */}
                 <div className="relative w-full aspect-[16/9] overflow-hidden">

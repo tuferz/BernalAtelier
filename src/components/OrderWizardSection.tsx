@@ -190,7 +190,7 @@ export default function OrderWizardSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative min-h-[100svh] w-full flex flex-col md:flex-row bg-stone-900 overflow-hidden border-t border-white/[0.04]">
+    <section ref={sectionRef} className="relative h-[100svh] w-full flex flex-col md:flex-row bg-stone-900 overflow-hidden border-t border-white/[0.04]">
 
       {/* Texture Background */}
       <div className="absolute inset-0 z-0 opacity-[0.45] pointer-events-none mix-blend-overlay">
@@ -215,16 +215,16 @@ export default function OrderWizardSection() {
       ) : (
         <>
           {/* LEFT COLUMN: Typography & Progress */}
-          <div ref={leftColRef} className="w-full md:w-[45%] lg:w-[40%] flex flex-col justify-between p-8 md:p-12 lg:p-16 relative z-10 min-h-[40vh] md:min-h-[100svh] border-b md:border-b-0 md:border-r border-white/[0.04] bg-stone-950/50">
+          <div ref={leftColRef} className="w-full md:w-[45%] lg:w-[40%] flex flex-col justify-between p-5 pb-4 md:p-12 lg:p-16 relative z-10 md:min-h-[100svh] border-b md:border-b-0 md:border-r border-white/[0.04] bg-stone-950/50">
 
-            <div className="step-nav mb-12 md:mb-0">
+            <div className="step-nav mb-4 md:mb-0">
               <span className="text-stone-500 text-[10px] md:text-xs tracking-[0.4em] uppercase">
                 0{step} / 04 — Cotización
               </span>
             </div>
 
             <div className="my-auto perspective-[1000px] pr-4">
-              <h2 key={`title-${step}`} className="step-title text-5xl md:text-6xl lg:text-[4vw] font-serif leading-[0.95] text-stone-200 uppercase opacity-0 break-words md:break-normal">
+              <h2 key={`title-${step}`} className="step-title text-3xl md:text-6xl lg:text-[4vw] font-serif leading-[0.95] text-stone-200 uppercase opacity-0 break-words md:break-normal">
                 {TITLES[step - 1]}
               </h2>
             </div>
@@ -235,14 +235,14 @@ export default function OrderWizardSection() {
           </div>
 
           {/* RIGHT COLUMN: Interaction Canvas */}
-          <div ref={rightColRef} className="w-full md:w-[55%] lg:w-[60%] flex flex-col p-8 md:p-12 lg:p-16 relative z-10 min-h-[60vh] md:h-[100svh]">
+          <div ref={rightColRef} className="w-full md:w-[55%] lg:w-[60%] flex flex-col flex-1 p-5 md:p-12 lg:p-16 relative z-10 md:h-[100svh] overflow-hidden">
 
             {/* Scrollable Content Area */}
             <div key={`content-${step}`} className="step-content-wrapper flex-1 flex flex-col overflow-y-auto no-scrollbar w-full max-w-3xl mx-auto opacity-0">
-              <div className="my-auto py-8">
+              <div className="my-auto py-4 md:py-8">
                 {/* STEP 1 */}
                 {step === 1 && (
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 w-full">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 md:gap-4 w-full">
                     {PRODUCTS.map((p, i) => {
                       const isActive = formData.product === p.title;
                       return (
@@ -250,14 +250,14 @@ export default function OrderWizardSection() {
                           key={i}
                           ref={(el) => { cardsRef.current[i] = el; }}
                           onClick={() => setFormData({ ...formData, product: p.title })}
-                          className={`opacity-0 group cursor-pointer transition-all duration-500 flex items-center gap-5 p-4 border ${isActive ? 'bg-[#1a1412] border-leather/60 shadow-[0_0_20px_rgba(196,106,50,0.15)]' : 'bg-stone-950/40 border-white/10 hover:border-leather/30 hover:bg-stone-900/60'}`}
+                          className={`opacity-0 group cursor-pointer transition-all duration-500 flex items-center gap-3 md:gap-5 p-3 md:p-4 border ${isActive ? 'bg-[#1a1412] border-leather/60 shadow-[0_0_20px_rgba(196,106,50,0.15)]' : 'bg-stone-950/40 border-white/10 hover:border-leather/30 hover:bg-stone-900/60'}`}
                         >
-                          <div className="relative w-28 h-28 md:w-36 md:h-36 flex-shrink-0 overflow-hidden bg-stone-950">
+                          <div className="relative w-20 h-20 md:w-36 md:h-36 flex-shrink-0 overflow-hidden bg-stone-950">
                             <Image src={p.img} alt={p.title} fill sizes="(max-width: 768px) 112px, 144px" className={`object-cover transition-all duration-700 ${isActive ? 'grayscale-0' : 'grayscale-[0.6] group-hover:grayscale-[0.2] brightness-90 group-hover:brightness-100'}`} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className={`text-lg md:text-xl font-serif leading-tight transition-colors duration-300 ${isActive ? 'text-leather-light' : 'text-stone-200'}`}>{p.title}</h4>
-                            <p className="text-stone-500 text-xs md:text-sm mt-1 leading-snug">{p.desc}</p>
+                            <h4 className={`text-base md:text-xl font-serif leading-tight transition-colors duration-300 ${isActive ? 'text-leather-light' : 'text-stone-200'}`}>{p.title}</h4>
+                            <p className="text-stone-400 text-[11px] md:text-sm mt-0.5 md:mt-1 leading-snug">{p.desc}</p>
                           </div>
                         </div>
                       )
@@ -274,11 +274,11 @@ export default function OrderWizardSection() {
                           value={formData.preferences}
                           onChange={(e) => setFormData({ ...formData, preferences: e.target.value })}
                           placeholder="Color de piel, medidas específicas, grabado de iniciales... o déjalo en blanco y lo platicamos."
-                          className="w-full h-48 md:h-64 bg-stone-950/60 border border-white/[0.05] focus:border-leather focus:bg-stone-950 outline-none text-stone-200 placeholder:text-stone-700 resize-none p-6 md:p-8 text-xl md:text-2xl font-light transition-all duration-500 leading-relaxed no-scrollbar focus:shadow-[0_0_30px_rgba(196,106,50,0.08)]"
+                          className="w-full h-48 md:h-64 bg-stone-950/60 border border-white/[0.05] focus:border-leather focus:bg-stone-950 outline-none text-stone-200 placeholder:text-stone-600 resize-none p-6 md:p-8 text-xl md:text-2xl font-light transition-all duration-500 leading-relaxed no-scrollbar focus:shadow-[0_0_30px_rgba(196,106,50,0.08)]"
                         />
                         <div className="absolute inset-0 border-stitching pointer-events-none opacity-0 group-focus-within:opacity-20 transition-opacity duration-500 m-2"></div>
                       </div>
-                      <p className="text-stone-600 text-[10px] md:text-xs tracking-[0.3em] uppercase text-right mt-4">Opcional</p>
+                      <p className="text-stone-500 text-[10px] md:text-xs tracking-[0.3em] uppercase text-right mt-4">Opcional</p>
                     </div>
                   </div>
                 )}
@@ -294,7 +294,7 @@ export default function OrderWizardSection() {
                           value={formData.contactName}
                           onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
                           placeholder="Ej. Alejandro Bernal"
-                          className="w-full bg-stone-950/60 border border-white/[0.05] focus:border-leather focus:bg-stone-950 outline-none text-stone-200 placeholder:text-stone-800 p-5 md:p-6 text-2xl md:text-3xl font-light transition-all duration-500 focus:shadow-[0_0_30px_rgba(196,106,50,0.08)]"
+                          className="w-full bg-stone-950/60 border border-white/[0.05] focus:border-leather focus:bg-stone-950 outline-none text-stone-200 placeholder:text-stone-600 p-5 md:p-6 text-2xl md:text-3xl font-light transition-all duration-500 focus:shadow-[0_0_30px_rgba(196,106,50,0.08)]"
                         />
                         <div className="absolute inset-0 border-stitching pointer-events-none opacity-0 group-focus-within:opacity-20 transition-opacity duration-500 m-1.5"></div>
                       </div>
@@ -310,13 +310,13 @@ export default function OrderWizardSection() {
                           />
                           <button
                             onClick={() => handleToggle("whatsapp")}
-                            className={`flex-1 relative z-10 text-[10px] md:text-xs py-4 transition-colors duration-300 tracking-[0.2em] uppercase font-medium ${formData.contactMethod === "whatsapp" ? "text-stone-200" : "text-stone-600 hover:text-stone-400"}`}
+                            className={`flex-1 relative z-10 text-[10px] md:text-xs py-4 transition-colors duration-300 tracking-[0.2em] uppercase font-medium ${formData.contactMethod === "whatsapp" ? "text-stone-200" : "text-stone-500 hover:text-stone-300"}`}
                           >
                             WhatsApp
                           </button>
                           <button
                             onClick={() => handleToggle("email")}
-                            className={`flex-1 relative z-10 text-[10px] md:text-xs py-4 transition-colors duration-300 tracking-[0.2em] uppercase font-medium ${formData.contactMethod === "email" ? "text-stone-200" : "text-stone-600 hover:text-stone-400"}`}
+                            className={`flex-1 relative z-10 text-[10px] md:text-xs py-4 transition-colors duration-300 tracking-[0.2em] uppercase font-medium ${formData.contactMethod === "email" ? "text-stone-200" : "text-stone-500 hover:text-stone-300"}`}
                           >
                             Correo
                           </button>
@@ -330,7 +330,7 @@ export default function OrderWizardSection() {
                             value={formData.contactDetail}
                             onChange={(e) => setFormData({ ...formData, contactDetail: e.target.value })}
                             placeholder={formData.contactMethod === "whatsapp" ? "+52 123 456 7890" : "tu@correo.com"}
-                            className="w-full bg-stone-950/30 border border-white/[0.05] focus:border-leather focus:bg-[#1a1412] outline-none text-stone-200 placeholder:text-stone-800 p-5 md:p-6 text-2xl md:text-3xl font-light transition-all duration-500 focus:shadow-[0_0_30px_rgba(196,106,50,0.08)]"
+                            className="w-full bg-stone-950/60 border border-white/[0.05] focus:border-leather focus:bg-stone-950 outline-none text-stone-200 placeholder:text-stone-600 p-5 md:p-6 text-2xl md:text-3xl font-light transition-all duration-500 focus:shadow-[0_0_30px_rgba(196,106,50,0.08)]"
                           />
                           <div className="absolute inset-0 border-stitching pointer-events-none opacity-0 group-focus-within:opacity-20 transition-opacity duration-500 m-1.5"></div>
                         </div>
@@ -342,7 +342,7 @@ export default function OrderWizardSection() {
                 {/* STEP 4 */}
                 {step === 4 && (
                   <div className="w-full">
-                    <div className="step-element opacity-0 bg-[#120e0d] p-8 md:p-12 border border-white/[0.03] space-y-8 relative overflow-hidden">
+                    <div className="step-element opacity-0 bg-[#120e0d] p-8 md:p-12 border border-white/10 space-y-8 relative overflow-hidden">
                       <div className="absolute inset-3 border-stitching pointer-events-none opacity-20"></div>
 
                       <div className="relative z-10">
@@ -367,12 +367,12 @@ export default function OrderWizardSection() {
             </div>
 
             {/* CONTROLS (Always visible at the bottom) */}
-            <div key={`nav-${step}`} className="step-nav mt-6 pt-6 border-t border-white/[0.04] flex items-center justify-between w-full max-w-3xl mx-auto flex-shrink-0 opacity-0">
+            <div key={`nav-${step}`} className="step-nav mt-4 md:mt-6 pt-4 md:pt-6 border-t border-white/[0.08] flex items-center justify-between w-full max-w-3xl mx-auto flex-shrink-0 opacity-0">
 
               {step > 1 ? (
                 <button
                   onClick={handleBack}
-                  className="group text-stone-500 hover:text-stone-300 text-xs md:text-sm uppercase tracking-[0.2em] transition-colors duration-300 flex items-center gap-3 md:gap-4"
+                  className="group text-stone-400 hover:text-stone-200 text-xs md:text-sm uppercase tracking-[0.2em] transition-colors duration-300 flex items-center gap-3 md:gap-4"
                 >
                   <ArrowLeft size={16} className="text-stone-600 group-hover:-translate-x-1 transition-transform duration-300" />
                   Atrás
