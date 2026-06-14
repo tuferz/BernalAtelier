@@ -80,46 +80,55 @@ export default function OrderWizardSection() {
       return;
     }
 
-    // Left Column: Split Text Animation
+    // Left Column: Title Animation
     const title = document.querySelector('.step-title');
     let split: SplitType | null = null;
+    const isMob = window.innerWidth < 768;
 
     if (title) {
-      split = new SplitType(title as HTMLElement, { types: 'lines,words,chars' });
-      gsap.set(title, { opacity: 1 }); // Reveal wrapper to prevent blink
-
-      gsap.fromTo(split.chars,
-        { opacity: 0, y: 40, rotateX: -90 },
-        {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          stagger: 0.02,
-          duration: 1,
-          ease: "back.out(1.5)"
-        }
-      );
+      if (!isMob) {
+        // Desktop: Rich char-by-char 3D cascade
+        split = new SplitType(title as HTMLElement, { types: 'lines,words,chars' });
+        gsap.set(title, { opacity: 1 });
+        gsap.fromTo(split.chars,
+          { opacity: 0, y: 40, rotateX: -90 },
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            stagger: 0.02,
+            duration: 1,
+            ease: "back.out(1.5)"
+          }
+        );
+      } else {
+        // Mobile: Simple fade+slide for 60fps
+        gsap.fromTo(title,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+        );
+      }
     }
 
     gsap.set('.step-content-wrapper', { opacity: 1 });
 
     // Right Column: Stagger form elements and nav
     gsap.fromTo(['.step-element', '.step-nav'],
-      { opacity: 0, x: 30 },
-      { opacity: 1, x: 0, stagger: 0.08, duration: 0.8, ease: "power3.out", delay: 0.2 }
+      { opacity: 0, x: isMob ? 15 : 30 },
+      { opacity: 1, x: 0, stagger: 0.08, duration: isMob ? 0.6 : 0.8, ease: "power3.out", delay: 0.2 }
     );
 
     // Step 1: Cards stagger
     if (step === 1 && cardsRef.current.length > 0) {
       gsap.fromTo(
         cardsRef.current,
-        { opacity: 0, y: 50, scale: 0.95 },
+        { opacity: 0, y: isMob ? 20 : 50, scale: isMob ? 1 : 0.95 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 1,
-          stagger: 0.1,
+          duration: isMob ? 0.6 : 1,
+          stagger: isMob ? 0.06 : 0.1,
           ease: "power3.out",
           delay: 0.3
         }

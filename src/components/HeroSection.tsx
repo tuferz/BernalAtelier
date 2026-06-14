@@ -160,7 +160,7 @@ export default function HeroSection() {
             alt="Textura envolvente de Cuero y Tela"
             fill
             sizes="100vw"
-            className="object-cover object-center opacity-100"
+            className="object-cover object-[75%_center] md:object-center opacity-100"
             priority
           />
           {/* Amber overlay for intense warmth */}
