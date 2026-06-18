@@ -230,12 +230,12 @@ export default function FeaturesSection() {
       {/* Top stitching */}
       <div className="absolute top-0 left-6 right-6 md:left-12 md:right-12 border-t border-stitching" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex-1 flex flex-col justify-center">
+      <div className="relative z-10 w-full max-w-[1920px] 2xl:max-w-[2560px] mx-auto px-6 md:px-12 2xl:px-32 flex-1 flex flex-col justify-center">
         
         {/* Section Header */}
         <div className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6 feature-header-container">
           <div className="flex flex-col">
-            <span className="text-leather-light text-xs uppercase tracking-[0.4em] mb-4 block feature-header-sub">
+            <span className="text-leather-light text-xs 2xl:text-sm uppercase tracking-[0.4em] mb-4 block feature-header-sub">
               El Compromiso
             </span>
             <div className="pb-4" style={{ clipPath: "polygon(-5% 0, 105% 0, 105% 120%, -5% 120%)" }}>
@@ -250,7 +250,7 @@ export default function FeaturesSection() {
             </div>
           </div>
           
-          <p className="text-stone-400 text-base font-light leading-relaxed max-w-xs md:text-right md:pb-1 feature-header-sub">
+          <p className="text-stone-400 text-base 2xl:text-xl font-light leading-relaxed max-w-xs 2xl:max-w-md md:text-right md:pb-1 feature-header-sub">
             Tres pilares definen cada pieza. Sin atajos, sin compromisos.
           </p>
         </div>
@@ -282,7 +282,7 @@ export default function FeaturesSection() {
                   {/* Accent */}
                   <div className="flex items-center gap-4">
                     <div className="h-px w-8 md:w-12 bg-gradient-to-r from-leather/60 to-transparent origin-left feature-line" />
-                    <span className="text-[11px] uppercase tracking-[0.25em] text-stone-500 feature-text">
+                    <span className="text-[11px] 2xl:text-xs uppercase tracking-[0.25em] text-stone-500 feature-text">
                       {feature.accent}
                     </span>
                   </div>
@@ -295,7 +295,7 @@ export default function FeaturesSection() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-stone-400 text-base font-light leading-relaxed feature-text">
+                  <p className="text-stone-400 text-base 2xl:text-lg font-light leading-relaxed feature-text">
                     {feature.desc}
                   </p>
                 </div>

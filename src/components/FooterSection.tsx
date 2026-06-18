@@ -87,7 +87,7 @@ export default function FooterSection() {
       {/* Subtle bottom glow */}
       <div className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[40vh] bg-amber-900/10 rounded-t-[100%] blur-[120px] pointer-events-none" />
 
-      <div className="w-full max-w-7xl mx-auto px-6 relative z-10 flex-1 flex flex-col">
+      <div className="w-full max-w-[1920px] 2xl:max-w-[2560px] mx-auto px-6 md:px-12 2xl:px-32 relative z-10 flex-1 flex flex-col">
 
         <div className="flex-1 flex flex-col justify-center items-center text-center mt-12 mb-24">
 
@@ -107,17 +107,17 @@ export default function FooterSection() {
         <div ref={footerBottomRef} className="pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
           {/* Left: Logo */}
           <div className="flex justify-center md:justify-start md:-ml-22">
-            <LogoSVG className="w-16 h-16 md:w-20 md:h-20 text-stone-500 hover:text-amber-600 transition-colors duration-500" />
+            <LogoSVG className="w-16 h-16 md:w-20 md:h-20 2xl:w-28 2xl:h-28 text-stone-500 hover:text-amber-600 transition-colors duration-500" />
           </div>
 
           {/* Center: Social Links */}
-          <div className="flex justify-center gap-8 text-[11px] md:text-xs uppercase tracking-[0.3em] text-stone-400">
+          <div className="flex justify-center gap-8 text-[11px] md:text-xs 2xl:text-sm uppercase tracking-[0.3em] text-stone-400">
             <a href="https://www.instagram.com/bernal_atelier/" className="pl-[0.3em] pb-1 border-b border-stone-700 hover:border-amber-500 hover:text-amber-500 transition-all duration-300" target="_blank" rel="noopener noreferrer">Instagram</a>
           </div>
 
           {/* Right: Copyright */}
           <div className="flex justify-center md:justify-end md:-mr-22">
-            <p className="text-[10px] md:text-[11px] text-stone-600 uppercase tracking-widest">
+            <p className="text-[10px] md:text-[11px] 2xl:text-xs text-stone-600 uppercase tracking-widest">
               © 2026. Hecho a mano.
             </p>
           </div>

@@ -102,9 +102,9 @@ export default function PortfolioSection() {
       <div className="relative z-10 w-full h-full flex flex-col justify-center py-12 md:py-20 overflow-hidden">
         {/* Header estático arriba del pin */}
         <div className="portfolio-header flex flex-col items-center text-center space-y-4 md:space-y-6 mb-8 md:mb-12 flex-shrink-0">
-          <span className="text-leather-light text-[10px] md:text-xs uppercase tracking-[0.4em]">La Colección</span>
+          <span className="text-leather-light text-[10px] md:text-xs 2xl:text-sm uppercase tracking-[0.4em]">La Colección</span>
           <div className="pb-4">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif leading-[1.1] max-w-2xl text-stone-200">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl 2xl:text-8xl font-serif leading-[1.1] max-w-2xl 2xl:max-w-4xl text-stone-200">
               Catálogo <span className="italic font-normal text-stone-400">Curado</span>
             </h2>
           </div>
@@ -121,7 +121,7 @@ export default function PortfolioSection() {
               className={`flex-shrink-0 flex flex-col gap-4 md:gap-6 w-[85vw] md:w-auto snap-center ${i !== PRODUCTS.length - 1 ? 'md:mr-16 lg:mr-24' : ''}`}
             >
               {/* Image Container directly sets height to restore original size, and aspect ratio determines its width automatically */}
-              <div className="relative overflow-hidden aspect-[4/3] md:aspect-[3/4] h-[35vh] md:h-[45vh] lg:h-[50vh] bg-stone-900 group cursor-pointer border border-white/10">
+              <div className="relative overflow-hidden aspect-[4/3] md:aspect-[3/4] h-[35vh] md:h-[45vh] lg:h-[50vh] 2xl:h-[60vh] bg-stone-900 group cursor-pointer border border-white/10">
                 <Image
                   src={p.img}
                   alt={p.title}
