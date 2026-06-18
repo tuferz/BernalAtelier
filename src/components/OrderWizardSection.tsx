@@ -233,7 +233,7 @@ export default function OrderWizardSection() {
             </div>
 
             <div className="my-auto perspective-[1000px] pr-4">
-              <h2 key={`title-${step}`} className="step-title text-3xl md:text-6xl lg:text-[4vw] 2xl:text-[5vw] font-serif leading-[0.95] text-stone-200 uppercase opacity-0 break-words md:break-normal">
+              <h2 key={`title-${step}`} className="step-title text-3xl md:text-5xl lg:text-5xl 2xl:text-7xl font-serif leading-[0.95] text-stone-200 uppercase opacity-0 break-words md:break-normal">
                 {TITLES[step - 1]}
               </h2>
             </div>
