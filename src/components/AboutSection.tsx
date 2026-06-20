@@ -194,7 +194,7 @@ export default function AboutSection() {
       {/* Top stitching separator */}
       <div className="absolute top-0 left-6 right-6 md:left-12 md:right-12 border-t border-stitching" />
 
-      <div ref={containerRef} className="relative z-10 max-w-[1920px] 2xl:max-w-[2560px] mx-auto px-6 md:px-12 2xl:px-32">
+      <div ref={containerRef} className="relative z-10 max-w-[1920px] ultrawide:max-w-[2560px] mx-auto px-6 md:px-12 ultrawide:px-32">
         
         {/* Single row: Image left, Title+Text right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -223,11 +223,11 @@ export default function AboutSection() {
             <div className="mt-6 pt-4 border-t border-stitching grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-2 stats-grid">
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col gap-0.5 about-text-reveal">
-                  <span className="text-xl md:text-2xl 2xl:text-4xl font-serif text-orange-50/90 tabular-nums block">
+                  <span className="text-xl md:text-2xl ultrawide:text-4xl font-serif text-orange-50/90 tabular-nums block">
                     <span ref={el => { counterRefs.current[i] = el }}>0</span>
                     {stat.suffix}
                   </span>
-                  <span className="text-[10px] md:text-[11px] 2xl:text-xs uppercase tracking-[0.2em] text-stone-400">
+                  <span className="text-[10px] md:text-[11px] ultrawide:text-xs uppercase tracking-[0.2em] text-stone-400">
                     {stat.label}
                   </span>
                 </div>
@@ -238,7 +238,7 @@ export default function AboutSection() {
           {/* Right Column: Text */}
           <div className="lg:col-span-6 lg:col-start-7 order-1 lg:order-2 flex flex-col gap-6 about-text-container">
             
-            <span className="text-leather-light text-xs 2xl:text-sm uppercase tracking-[0.4em] about-text-reveal">
+            <span className="text-leather-light text-xs ultrawide:text-sm uppercase tracking-[0.4em] about-text-reveal">
               Filosofía
             </span>
 
@@ -261,13 +261,13 @@ export default function AboutSection() {
 
             {/* Pull Quote */}
             <blockquote className="relative pl-5 border-l-2 border-leather/40 about-text-reveal">
-              <p className="text-base md:text-lg 2xl:text-2xl font-serif italic text-orange-100/80 leading-relaxed">
+              <p className="text-base md:text-lg ultrawide:text-2xl font-serif italic text-orange-100/80 leading-relaxed">
                 &ldquo;La perfección no es un destino, es un proceso que se pule con cada puntada.&rdquo;
               </p>
             </blockquote>
 
             {/* Body Text */}
-            <div className="flex flex-col gap-4 text-stone-400 text-base 2xl:text-xl font-light leading-relaxed">
+            <div className="flex flex-col gap-4 text-stone-400 text-base ultrawide:text-xl font-light leading-relaxed">
               <p className="about-text-reveal">
                 Bernal Atelier nace de una búsqueda personal por la perfección tangible. Su creador divide su vida entre el rigor técnico de la industria y la libertad creativa del taller de cuero.
               </p>
@@ -280,8 +280,8 @@ export default function AboutSection() {
             <div className="flex items-center gap-4 md:gap-5 pt-4 about-text-reveal">
               <div className="w-8 md:w-12 h-px bg-gradient-to-r from-leather/60 to-transparent origin-left about-line" />
               <div>
-                <span className="text-[10px] md:text-xs 2xl:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-stone-500 block mb-1">Fundador & Artesano</span>
-                <span className="text-lg md:text-xl 2xl:text-3xl font-serif italic text-orange-50/90">Eben.</span>
+                <span className="text-[10px] md:text-xs ultrawide:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-stone-500 block mb-1">Fundador & Artesano</span>
+                <span className="text-lg md:text-xl ultrawide:text-3xl font-serif italic text-orange-50/90">Eben.</span>
               </div>
             </div>
           </div>
@@ -294,3 +294,4 @@ export default function AboutSection() {
     </section>
   );
 }
+

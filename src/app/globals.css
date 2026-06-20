@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant ultrawide (@media (min-width: 1536px) and (min-height: 900px));
+
 @theme inline {
   --color-stone-950: #130a06; /* Deep mahogany / cordovan */
   --color-stone-900: #1c100a;

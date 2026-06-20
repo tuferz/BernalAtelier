@@ -212,10 +212,10 @@ export default function HeroSection() {
       </div>
 
       {/* Right Side: Floating Text */}
-      <div className="absolute bottom-[96px] md:bottom-[64px] left-[24px] md:left-auto right-[24px] md:right-[180px] lg:right-[10vw] 2xl:right-[15vw] z-10 flex flex-col gap-8 max-w-[280px] md:max-w-sm 2xl:max-w-lg">
+      <div className="absolute bottom-[96px] md:bottom-[64px] left-[24px] md:left-auto right-[24px] md:right-[180px] lg:right-[10vw] ultrawide:right-[15vw] z-10 flex flex-col gap-8 max-w-[280px] md:max-w-sm ultrawide:max-w-lg">
         <p 
           ref={descRef}
-          className="text-orange-50/90 text-sm md:text-lg 2xl:text-2xl font-light leading-relaxed opacity-0"
+          className="text-orange-50/90 text-sm md:text-lg ultrawide:text-2xl font-light leading-relaxed opacity-0"
           style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
         >
           Piezas de cuero genuino que envejecen con carácter. Diseñadas bajo un rigor industrial, creadas con pasión artesanal.
@@ -223,8 +223,8 @@ export default function HeroSection() {
         
         <div ref={ctaRef} className="opacity-0">
           <MagneticButton>
-            <a href="#gallery" className="group flex items-center gap-4 text-[10px] md:text-xs 2xl:text-sm uppercase tracking-[0.3em] text-orange-50/90 hover:text-amber-500 transition-colors duration-500" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>
-              <span className="w-8 md:w-12 2xl:w-16 h-px bg-stone-400 group-hover:w-16 md:group-hover:w-20 2xl:group-hover:w-24 group-hover:bg-amber-500 transition-all duration-500 ease-out"></span>
+            <a href="#gallery" className="group flex items-center gap-4 text-[10px] md:text-xs ultrawide:text-sm uppercase tracking-[0.3em] text-orange-50/90 hover:text-amber-500 transition-colors duration-500" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>
+              <span className="w-8 md:w-12 ultrawide:w-16 h-px bg-stone-400 group-hover:w-16 md:group-hover:w-20 ultrawide:group-hover:w-24 group-hover:bg-amber-500 transition-all duration-500 ease-out"></span>
               Explorar Colección
             </a>
           </MagneticButton>
@@ -233,3 +233,4 @@ export default function HeroSection() {
     </section>
   );
 }
+
