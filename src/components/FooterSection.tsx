@@ -106,7 +106,7 @@ export default function FooterSection() {
         {/* Footer Bottom Links (3 columns for perfect centering) */}
         <div ref={footerBottomRef} className="pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
           {/* Left: Logo */}
-          <div className="flex justify-center md:justify-start md:-ml-22">
+          <div className="flex justify-center md:justify-start">
             <LogoSVG className="w-16 h-16 md:w-20 md:h-20 ultrawide:w-28 ultrawide:h-28 text-stone-500 hover:text-amber-600 transition-colors duration-500" />
           </div>
 
@@ -116,7 +116,7 @@ export default function FooterSection() {
           </div>
 
           {/* Right: Copyright */}
-          <div className="flex justify-center md:justify-end md:-mr-22">
+          <div className="flex justify-center md:justify-end">
             <p className="text-[10px] md:text-[11px] ultrawide:text-xs text-stone-600 uppercase tracking-widest">
               © 2026. Hecho a mano.
             </p>

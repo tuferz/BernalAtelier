@@ -197,20 +197,7 @@ export default function FeaturesSection() {
       });
     }
 
-    // 3. Footer line
-    gsap.fromTo(".feature-footer", 
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".feature-footer",
-          start: "top 95%"
-        }
-      }
-    );
+
 
     return () => {
       if (splitTitle1) splitTitle1.revert();
